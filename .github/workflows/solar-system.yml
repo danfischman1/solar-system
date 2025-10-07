@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup NodeJS Version - ${{ matrix.nodejs_version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.nodejs_version }}
 
@@ -39,7 +39,7 @@ jobs:
         run: npm test
 
       - name: Archive Test Result
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Test-Result
           path: test-output
@@ -53,7 +53,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup NodeJS Version - 18
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 18
 
@@ -65,7 +65,7 @@ jobs:
       run: npm run coverage
 
     - name: Archive Test Result
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Code-Coverage-Result
         path: coverage
