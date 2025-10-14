@@ -68,3 +68,29 @@ jobs:
             path: coverage
             retention-days: 5
 
+    docker:
+      name: Deliver Docker image
+      runs-on: ubuntu-latest
+      needs:
+        - unit-testing
+        - code-coverage
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Login registry
+          uses: docker/login-action@3
+          with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Build and push image
+          uses: docker/build-push-action@v6
+          with:
+            context: .
+            push: true
+            tags: ghcr.io/${{ github.repository_owner }}/solar-system/${{ github.sha }}
+
+
+
