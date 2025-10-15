@@ -125,7 +125,6 @@ jobs:
 
     integration-testing:
       name: integration-testing
-      runs-on: ubuntu-latest
       needs: [dev-deploy]
       uses: ./.github/workflows/reusable-workflow.yml
       with:
